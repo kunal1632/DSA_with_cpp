@@ -23,7 +23,7 @@ void sortOne(int arr[], int n)
         {
             right--;
         }
-        if (arr[left == 1] && arr[right] == 0 && left < right)
+        if (left < right)
         {
             swap(arr[left], arr[right]);
             left++;
