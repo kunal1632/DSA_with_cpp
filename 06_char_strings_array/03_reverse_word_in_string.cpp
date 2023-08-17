@@ -2,42 +2,40 @@
 #include <string>
 using namespace std;
 
-string reverseing(string ch)
+string reverseing(string str)
 {
     int s = 0;
-    int e = ch.length() - 1;
+    int e = str.length() - 1;
 
-    while (s < e)
+    while (s <= e)
     {
-        swap(ch[s++], ch[e--]);
+        swap(str[s++], str[e--]);
     }
-    return ch;
+    return str;
 }
 
 int main()
 {
-    string str = "";
-    cout << "Enter a string: " << endl;
-    cin >> str;
+    string str = "kunal dhand goranshi goel";
+    // cout << "Enter a string: " << endl;
+    // cin >> str;
     string ans;
-    cout << str;
+    int i = 0;
 
-    for (int i = 0; i < str.length(); i++)
+    while (i < str.length() - 1)
     {
 
         string temp = "";
-        while (str[i] != ' ')
+        while (str[i] != ' ' && str[i] != '\0')
         {
-            temp.push_back(str[i]);
+
+            temp += str[i];
             i++;
-            // cout << temp;
         }
+        i++;
 
-        // temp = reverseing(temp);
-        // ans.push_back(temp);
+        ans += reverseing(temp) + " ";
     }
-
-    // cout << ans;
-
+    cout << ans;
     return 0;
 }
