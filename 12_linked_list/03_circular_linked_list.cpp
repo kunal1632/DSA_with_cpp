@@ -108,6 +108,88 @@ void print(Node *tail)
     cout << endl;
 }
 
+bool isCircular(Node *head)
+{
+    // empty list check
+    if (head == NULL)
+    {
+        return false;
+    }
+
+    Node *temp = head->next;
+    while (temp == NULL && temp != head)
+    {
+        temp = temp->next;
+    }
+
+    if (temp = NULL)
+    {
+        return false;
+    }
+    return true;
+}
+
+Node *floyedDetectLoop(Node *head)
+{
+    if (head == NULL)
+    {
+        return head;
+    }
+
+    Node *slow = head;
+    Node *fast = head;
+    while (slow != NULL && fast != NULL)
+    {
+        fast = fast->next;
+        if (fast != NULL)
+        {
+            fast = fast->next;
+        }
+        slow = slow->next;
+        if (slow == fast)
+        {
+            cout << "present at : " << slow->data << endl;
+            return slow;
+        }
+        }
+    cout << "loop is not present in the linked list " << endl;
+    return NULL;
+}
+
+Node *getIntersectingNode(Node *head)
+{
+    if (head == NULL)
+    {
+        return head;
+    }
+
+    Node *intersection = floyedDetectLoop(head);
+    Node *slow = head;
+
+    while (slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    return slow;
+}
+
+void removeLoop(Node *&head)
+{
+    if (head == NULL)
+    {
+        return;
+    }
+    Node *startOfLoop = floyedDetectLoop(head);
+    Node *temp = startOfLoop;
+    while (temp->next != startOfLoop)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = NULL;
+}
+
 int main()
 {
     Node *tail = NULL;
@@ -140,6 +222,21 @@ int main()
 
     deleteNode(tail, 6);
     print(tail);
+
+    if (isCircular(tail))
+    {
+        cout << "Linked list is circular in nature" << endl;
+    }
+    else
+    {
+        cout << "Linked list is not ciclular in nature" << endl;
+    }
+
+    floyedDetectLoop(tail);
+    cout << getIntersectingNode(tail)->data << endl;
+
+    removeLoop(tail);
+    floyedDetectLoop(tail);
 
     return 0;
 }
