@@ -151,7 +151,7 @@ Node *floyedDetectLoop(Node *head)
             cout << "present at : " << slow->data << endl;
             return slow;
         }
-        }
+    }
     cout << "loop is not present in the linked list " << endl;
     return NULL;
 }
